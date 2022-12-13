@@ -19,27 +19,21 @@ val V = new {
 lazy val commonSettings: Seq[Setting[_]] = Seq(
   organization := "de.bitmarck.bms",
   version := {
-    val Tag = "v?([0-9]+(?:\\.[0-9]+)+(?:[+-].*)?)".r
-    sys.env.get("CI_COMMIT_TAG").collect { case Tag(tag) => tag }
+    val Tag = "refs/tags/v?([0-9]+(?:\\.[0-9]+)+(?:[+-].*)?)".r
+    sys.env.get("CI_VERSION").collect { case Tag(tag) => tag }
       .getOrElse("0.0.1-SNAPSHOT")
   },
-
   addCompilerPlugin("com.olegpy" %% "better-monadic-for" % V.betterMonadicFor),
-
   libraryDependencies ++= Seq(
     "org.graalvm.nativeimage" % "svm" % V.nativeimage % Provided,
     "ch.qos.logback" % "logback-classic" % V.logbackClassic % Test,
     "de.lolhens" %% "munit-tagless-final" % V.munitTaglessFinal % Test,
     "org.scalameta" %% "munit" % V.munit % Test,
   ),
-
   testFrameworks += new TestFramework("munit.Framework"),
-
   assembly / assemblyJarName := s"${name.value}-${version.value}.sh.bat",
-
   assembly / assemblyOption := (assembly / assemblyOption).value
     .withPrependShellScript(Some(AssemblyPlugin.defaultUniversalScript(shebang = false))),
-
   assembly / assemblyMergeStrategy := {
     case PathList(paths@_*) if paths.last == "module-info.class" => MergeStrategy.discard
     case x =>
