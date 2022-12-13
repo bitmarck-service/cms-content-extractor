@@ -3,6 +3,12 @@
 A tool to extract the payload from CMSSignedData binary objects.
 BouncyCastle is used to parse the binary data structures.
 
+## CLI Usage
+
+```sh
+cat cms-signed-file.bin | cms-content-extractor > cms-payload.bin
+```
+
 ## WebService Usage
 
 | Endpoint       | Input                                | Output               | Description                                    |
