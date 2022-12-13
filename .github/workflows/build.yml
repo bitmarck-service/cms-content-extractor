@@ -11,7 +11,7 @@ on:
       - published
 
 env:
-  NAME: cms-content-extractor
+  IMAGE_NAME: cms-content-extractor
 
 jobs:
   # Push image to GitHub Packages.
@@ -39,7 +39,7 @@ jobs:
           sbt "; test; cli/assembly; server/assembly; cli/graalvm-native-image:packageBin"
           mkdir cli/target/dist
           mv cli/target/scala-*/*.sh.bat cli/target/dist/
-          mv "$(find cli/target/graalvm-native-image -type f ! -name '*.txt')" "cli/target/dist/$NAME"
+          mv "$(find cli/target/graalvm-native-image -type f ! -name '*.txt')" cli/target/dist/
 
       - uses: actions/upload-artifact@v3
         with:
@@ -65,7 +65,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ env.GITHUB_TOKEN }}
         run: |
-          IMAGE_ID="ghcr.io/${{ github.repository_owner }}/$NAME"
+          IMAGE_ID="ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME"
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo "$IMAGE_ID" | tr '[A-Z]' '[a-z]')
@@ -84,5 +84,5 @@ jobs:
             TAGS=("${GITHUB_SHA::8}")
           fi
 
-          for TAG in "${TAGS[@]}"; do docker tag "$NAME" "$IMAGE_ID:$TAG"; done
+          for TAG in "${TAGS[@]}"; do docker tag "$IMAGE_NAME" "$IMAGE_ID:$TAG"; done
           for TAG in "${TAGS[@]}"; do docker push "$IMAGE_ID:$TAG"; done
