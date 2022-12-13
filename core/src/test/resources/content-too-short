@@ -1,0 +1,55 @@
+0�
+8	*�H��
+��
+)0�
+%1
+0	`�He0��	*�H��
+�����<?xml version="1.0" encoding="utf-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+	<id value="a0b70100-0000-0000-0003-000000000000"/>
+	<meta>
+		<profile value="https://gematik.de/fhir/StructureDefinition/ErxReceipt|1.0.3-1"/>
+	</meta>
+	<identifier>
+		<system value="https://gematik.de/fhir/NamingSystem/PrescriptionID"/>
+		<value value="160.000.000.000.439.98"/>
+	</identifier>
+	<type value="document"/>
+	<timestamp value="2021-08-15T07:48:03.029+00:00"/>
+	<link>
+		<relation value="self"/>
+		<url value="https://erp.zentral.erp.splitdns.ti-dienste.de/Task/160.000.000.000.439.98/$close/"/>
+	</link>
+</Bundle>
+���0��0�A�0
+*�H�=0o10	UDE10U
+gematik GmbH1200U)Komponenten-CA der Telematikinfrastruktur10UGEM.KOMP-CA40
+210621132015Z
+260620132014Z0D10	UDE10
+U
+IBM10U08747-SIG00210Uerezept0Z0*�H�=	+$B X�K�{�i�4�8�X�;�f�G�Xa�t۬�
+x�O�1W���[�O�yi�6̰G"#|0ި�ݣ��0��0U	 �#]�XP;:���a0U#0�U��!ϴ+����Da�㵰0B+60402+0�&http://ocsp2.komp-ca.telematik/ocsp/ec0U��0!U 00
+*� L�#0
+*� L�K0U�0 0++$"0 00000
+E-Rezept0
+*� L�0
+*�H�=H 0E! ���S���:��[�p:�^�@�F�Ċa�z��j r�� �^�|�^�^p�yɦ�����h+�/q��1��0�~0v0o10	UDE10U
+gematik GmbH1200U)Komponenten-CA der Telematikinfrastruktur10UGEM.KOMP-CA40	`�He���0	*�H��
+	1	*�H��
+0	*�H��
+	1
+210903074803Z0/	*�H��
+	1" ��fT��R3Ԉ��}c
+(O��#�o>I@}m0y	*�H��
+	1l0j0	`�He*0	`�He0	`�He0
+*�H��
+0*�H��
+ �0
+*�H��
+@0+0
+*�H��
+(0��*�H��
+	/1��0��0��0�� ~$7���:��#X�֔�NH�����0��' �p0z0s�q0o10	UDE10U
+gematik GmbH1200U)Komponenten-CA der Telematikinfrastruktur10UGEM.KOMP-CA40
+*�H�=F0D D_�9���P�3Dn-G�Q �
+m�'9��@% !�@�Y������[ boT��ٓ{Q^Qy�$�:
