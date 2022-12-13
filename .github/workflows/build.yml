@@ -46,11 +46,9 @@ jobs:
         with:
           path: 'cli/target/dist/*'
 
-      - uses: AButler/upload-release-assets@v2.0
+      - name: Upload release assets
         if: github.event_name == 'release'
-        with:
-          files: 'cli/target/dist/*'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ github.event.release.tag_name }} cli/target/dist/* --clobber
 
       - name: Docker Build
         run: docker build -t "$IMAGE_NAME" --label "runnumber=${GITHUB_RUN_ID}" .
