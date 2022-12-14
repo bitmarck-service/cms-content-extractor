@@ -38,19 +38,22 @@ jobs:
           CI_VERSION: ${{ github.ref }}
         run: |
           sbt "; test; cli/assembly; server/assembly; cli/graalvm-native-image:packageBin"
-          mkdir cli/target/dist
-          mv cli/target/scala-*/*.sh.bat cli/target/dist/
-          mv "$(find cli/target/graalvm-native-image -type f ! -name '*.txt')" cli/target/dist/
+          mkdir dist
+          shopt -s extglob
+          mv cli/target/scala-*/*.sh.bat dist/
+          mv cli/target/graalvm-native-image/!(*.txt) dist/
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
         with:
-          path: 'cli/target/dist/*'
+          path: 'dist/*'
+          retention-days: 5
 
       - name: Upload release assets
         if: github.event_name == 'release'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ github.event.release.tag_name }} cli/target/dist/* --clobber
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ github.event.release.tag_name }} dist/* --clobber
 
       - name: Docker Build
         run: docker build -t "$IMAGE_NAME" --label "runnumber=${GITHUB_RUN_ID}" .
