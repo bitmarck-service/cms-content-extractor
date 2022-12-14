@@ -28,7 +28,7 @@ The latest version is available [here](https://github.com/bitmarck-service/cms-c
 
 | Name                                   | Description                          |
 |----------------------------------------|--------------------------------------|
-| cms-content-extractor-cli-x.y.z        | Linux x64 binary for (fast startup)  |
+| cms-content-extractor-cli-x.y.z        | Linux x64 binary (fast startup)      |
 | cms-content-extractor-cli-x.y.z.sh.bat | Platform independent Java executable |
 
 ## License
