@@ -21,7 +21,7 @@ jobs:
 
     permissions:
       packages: write
-      contents: read
+      contents: write
 
     steps:
       - uses: actions/checkout@v3
@@ -38,22 +38,25 @@ jobs:
           CI_VERSION: ${{ github.ref }}
         run: |
           sbt "; test; cli/assembly; server/assembly; cli/graalvm-native-image:packageBin"
-          mkdir cli/target/dist
-          mv cli/target/scala-*/*.sh.bat cli/target/dist/
-          mv "$(find cli/target/graalvm-native-image -type f ! -name '*.txt')" cli/target/dist/
+          mkdir dist
+          shopt -s extglob
+          mv cli/target/scala-*/*.sh.bat dist/
+          mv cli/target/graalvm-native-image/!(*.txt) dist/
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
         with:
-          path: 'cli/target/dist/*'
+          path: 'dist/*'
+          retention-days: 5
 
-      - uses: AButler/upload-release-assets@v2.0
+      - name: Upload release assets
         if: github.event_name == 'release'
-        with:
-          files: 'cli/target/dist/*'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ github.event.release.tag_name }} dist/* --clobber
 
       - name: Docker Build
-        run: docker build -t "$NAME" --label "runnumber=${GITHUB_RUN_ID}" .
+        run: docker build -t "$IMAGE_NAME" --label "runnumber=${GITHUB_RUN_ID}" .
 
       - name: Log in to GitHub Container Registry
         env:
