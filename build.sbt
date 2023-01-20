@@ -6,14 +6,14 @@ val V = new {
   val betterMonadicFor = "0.3.1"
   val bouncyCastle = "1.72"
   val catsEffect = "3.4.4"
-  val fs2 = "3.4.0"
+  val fs2 = "3.5.0"
   val http4s = "0.23.17"
   val http4sErrors = "0.5.0"
   val log4s = "1.10.0"
   val logbackClassic = "1.4.5"
   val munit = "0.7.29"
   val munitTaglessFinal = "0.2.0"
-  val nativeimage = "22.3.0"
+  val nativeimage = "22.3.1"
 }
 
 lazy val commonSettings: Seq[Setting[_]] = Seq(
