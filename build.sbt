@@ -90,7 +90,7 @@ lazy val server = project
 
     libraryDependencies ++= Seq(
       "ch.qos.logback" % "logback-classic" % V.logbackClassic,
-      "de.lolhens" %% "http4s-errors" % V.http4sErrors,
+      "de.lhns" %% "http4s-errors" % V.http4sErrors,
       "org.http4s" %% "http4s-ember-server" % V.http4s,
       "org.http4s" %% "http4s-circe" % V.http4s,
       "org.http4s" %% "http4s-dsl" % V.http4s,
