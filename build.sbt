@@ -36,6 +36,7 @@ lazy val commonSettings: Seq[Setting[_]] = Seq(
     .withPrependShellScript(Some(AssemblyPlugin.defaultUniversalScript(shebang = false))),
   assembly / assemblyMergeStrategy := {
     case PathList(paths@_*) if paths.last == "module-info.class" => MergeStrategy.discard
+    case PathList("META-INF", path @ _*) if path.contains("OSGI-INF") => MergeStrategy.discard
     case x =>
       val oldStrategy = (assembly / assemblyMergeStrategy).value
       oldStrategy(x)
