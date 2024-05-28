@@ -4,7 +4,7 @@ name := (ThisBuild / name).value
 
 val V = new {
   val betterMonadicFor = "0.3.1"
-  val bouncyCastle = "1.77"
+  val bouncyCastle = "1.78.1"
   val catsEffect = "3.5.4"
   val fs2 = "3.10.2"
   val http4s = "0.23.27"
@@ -36,6 +36,7 @@ lazy val commonSettings: Seq[Setting[_]] = Seq(
     .withPrependShellScript(Some(AssemblyPlugin.defaultUniversalScript(shebang = false))),
   assembly / assemblyMergeStrategy := {
     case PathList(paths@_*) if paths.last == "module-info.class" => MergeStrategy.discard
+    case PathList("META-INF", path @ _*) if path.contains("OSGI-INF") => MergeStrategy.discard
     case x =>
       val oldStrategy = (assembly / assemblyMergeStrategy).value
       oldStrategy(x)
