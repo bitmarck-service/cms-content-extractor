@@ -24,12 +24,12 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4.6.0
+      - uses: graalvm/setup-graalvm@v1
         with:
-          distribution: 'temurin'
+          version: '22.3.0'
           java-version: '17'
-          cache: 'sbt'
-          gpg-private-key: ${{ secrets.PGP_PRIVATE_KEY }}
+          components: 'native-image'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: sbt/setup-sbt@v1
       - name: SBT Build
         env:
