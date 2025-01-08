@@ -1,19 +1,19 @@
-ThisBuild / scalaVersion := "2.13.14"
+ThisBuild / scalaVersion := "2.13.15"
 ThisBuild / name := (cli / name).value
 name := (ThisBuild / name).value
 
 val V = new {
   val betterMonadicFor = "0.3.1"
   val bouncyCastle = "1.79"
-  val catsEffect = "3.5.4"
+  val catsEffect = "3.5.7"
   val fs2 = "3.11.0"
-  val http4s = "0.23.27"
+  val http4s = "0.23.30"
   val http4sErrors = "0.5.1"
   val log4s = "1.10.0"
-  val logbackClassic = "1.5.8"
+  val logbackClassic = "1.5.16"
   val munit = "0.7.29"
   val munitTaglessFinal = "0.2.0"
-  val nativeimage = "24.0.2"
+  val nativeimage = "24.1.1"
 }
 
 lazy val commonSettings: Seq[Setting[_]] = Seq(
