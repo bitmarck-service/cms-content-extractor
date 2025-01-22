@@ -13,7 +13,7 @@ val V = new {
   val logbackClassic = "1.5.16"
   val munit = "0.7.29"
   val munitTaglessFinal = "0.2.0"
-  val nativeimage = "24.1.1"
+  val nativeimage = "24.1.2"
 }
 
 lazy val commonSettings: Seq[Setting[_]] = Seq(
