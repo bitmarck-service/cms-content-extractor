@@ -11,7 +11,7 @@ val V = new {
   val http4sErrors = "0.5.1"
   val log4s = "1.10.0"
   val logbackClassic = "1.5.16"
-  val munit = "0.7.29"
+  val munit = "1.1.0"
   val munitTaglessFinal = "0.2.0"
   val nativeimage = "24.1.1"
 }
