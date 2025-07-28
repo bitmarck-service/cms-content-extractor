@@ -4,7 +4,7 @@ name := (ThisBuild / name).value
 
 val V = new {
   val betterMonadicFor = "0.3.1"
-  val bouncyCastle = "1.79"
+  val bouncyCastle = "1.81"
   val catsEffect = "3.6.3"
   val fs2 = "3.11.0"
   val http4s = "0.23.30"
