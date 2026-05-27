@@ -74,6 +74,7 @@ lazy val cli = project
     GraalVMNativeImage / name := (GraalVMNativeImage / name).value + "-" + (GraalVMNativeImage / version).value,
     graalVMNativeImageOptions ++= Seq(
       "--static",
+      "--libc=musl",
       "--no-server",
       "--no-fallback",
       "--initialize-at-build-time",
