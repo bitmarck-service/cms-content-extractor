@@ -1,19 +1,19 @@
-ThisBuild / scalaVersion := "2.13.16"
+ThisBuild / scalaVersion := "2.13.18"
 ThisBuild / name := (cli / name).value
 name := (ThisBuild / name).value
 
 val V = new {
   val betterMonadicFor = "0.3.1"
-  val bouncyCastle = "1.81"
-  val catsEffect = "3.6.3"
-  val fs2 = "3.12.0"
+  val bouncyCastle = "1.84"
+  val catsEffect = "3.7.0"
+  val fs2 = "3.12.2"
   val http4s = "0.23.34"
   val http4sErrors = "0.5.1"
   val log4s = "1.10.0"
-  val logbackClassic = "1.5.18"
+  val logbackClassic = "1.5.32"
   val munit = "0.7.29"
   val munitTaglessFinal = "0.2.0"
-  val nativeimage = "24.2.2"
+  val nativeimage = "25.0.3"
 }
 
 lazy val commonSettings: Seq[Setting[_]] = Seq(
@@ -74,6 +74,7 @@ lazy val cli = project
     GraalVMNativeImage / name := (GraalVMNativeImage / name).value + "-" + (GraalVMNativeImage / version).value,
     graalVMNativeImageOptions ++= Seq(
       "--static",
+      "--libc=musl",
       "--no-server",
       "--no-fallback",
       "--initialize-at-build-time",

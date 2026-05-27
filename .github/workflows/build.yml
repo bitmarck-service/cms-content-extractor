@@ -23,12 +23,12 @@ jobs:
       packages: write
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: graalvm/setup-graalvm@v1
         with:
-          version: '22.3.0'
-          java-version: '17'
-          components: 'native-image'
+          java-version: '25'
+          distribution: 'graalvm-community'
+          native-image-musl: 'true'
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: sbt/setup-sbt@v1
       - name: SBT Build
@@ -41,7 +41,7 @@ jobs:
           mv cli/target/scala-*/*.sh.bat dist/
           mv cli/target/graalvm-native-image/!(*.txt) dist/
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           path: 'dist/*'
           retention-days: 5
@@ -87,7 +87,7 @@ jobs:
     name: Update Dependency Graph
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: sbt/setup-sbt@v1
       - uses: scalacenter/sbt-dependency-submission@v3
         env:
